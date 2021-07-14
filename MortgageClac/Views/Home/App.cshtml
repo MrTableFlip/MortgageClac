@@ -32,15 +32,15 @@
                 <table class="table table-striped">
                     <tr>
                         <td>Total Principal:</td>
-                        <td>@Model.Amount</td>
+                        <td>$@Model.Amount</td>
                     </tr>
                     <tr>
                         <td>Total Interest:</td>
-                        <td>@Model.TotalInterest</td>
+                        <td>$@Model.TotalInterest</td>
                     </tr>
                     <tr>
                         <td>Total Cost:</td>
-                        <td>@Model.TotalCost</td>
+                        <td>$@Model.TotalCost</td>
                     </tr>
                 </table>
             </div>
@@ -66,12 +66,12 @@
                             @foreach(LoanPayment payment in Model.Payments)
                             {
                             <tr>
-                                <td>@payment.Month</td>
-                                <td>@payment.Payment</td>
-                                <td>@payment.MonthlyPrincipal</td>
-                                <td>@payment.MonthlyInterest</td>
-                                <td>@payment.TotalInterest</td>
-                                <td>@payment.Balance</td>
+                                <td>$@payment.Month</td>
+                                <td>$@payment.Payment</td>
+                                <td>$@payment.MonthlyPrincipal</td>
+                                <td>$@payment.MonthlyInterest</td>
+                                <td>$@payment.TotalInterest</td>
+                                <td>$@payment.Balance</td>
                             </tr>
                             }
                         </tbody>
