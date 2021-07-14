@@ -1,0 +1,82 @@
+﻿@model MortgageClac.Models.Loan
+
+<div class="container-fluid">
+    <div class="row" id="r1">
+        <div class="col-lg-4" id="r1c1">
+            <div class="mortContainer">
+                <form asp-controller="Home" asp-action="App" method="post">
+                    <div class="form-group">
+                        <label form="loanAmount" asp-for="Amount">Loan Amount</label>
+                        <input type="text" class="form-control" asp-for="Amount" placeholder="Enter Amount" value="50000">
+                    </div>
+                    <div class="form-group">
+                        <label form="term" asp-for="Term">Term (in Years)</label>
+                        <input type="text" class="form-control" asp-for="Term" placeholder="Years of payment" value="10">
+                    </div>
+                    <div class="form-group">
+                        <label form="intRate" asp-for="Rate">Interest Rate</label>
+                        <input type="text" class="form-control" asp-for="Rate" placeholder="Interest Rate" value="5">
+                    </div>
+                    <button type="submit" class="btn btn-dark" style="background-color: #0D6DE0">
+                        Calculate
+                    </button>
+                </form>
+            </div>
+        </div>
+        <div class="col-lg-8" id="r1c2">
+            <div class="mortContainer">
+                <h1 style="text-align: center;">Your Monthly Payments</h1>
+                <br><br>
+                <h2 style="text-align: center;" id="mPay">@Model.Payment</h2>
+                <table class="table table-striped">
+                    <tr>
+                        <td>Total Principal:</td>
+                        <td>@Model.Amount</td>
+                    </tr>
+                    <tr>
+                        <td>Total Interest:</td>
+                        <td>@Model.TotalInterest</td>
+                    </tr>
+                    <tr>
+                        <td>Total Cost:</td>
+                        <td>@Model.TotalCost</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    @if (Model.Payments.Count > 0)
+    {
+        <div class="row" id="r2">
+            <div class="col" id="r2c1">
+                <div class="container-fluid">
+                    <table class="table table-striped" id="mortData">
+                        <thread class="thead-dark">
+                            <tr>
+                                <th>Month</th>
+                                <th>Payment</th>
+                                <th>Principal</th>
+                                <th>Interest</th>
+                                <th>Total Interest</th>
+                                <th>Balance</th>
+                            </tr>
+                        </thread>
+                        <tbody id="mortBody">
+                            @foreach(LoanPayment payment in Model.Payments)
+                            {
+                            <tr>
+                                <td>@payment.Month</td>
+                                <td>@payment.Payment</td>
+                                <td>@payment.MonthlyPrincipal</td>
+                                <td>@payment.MonthlyInterest</td>
+                                <td>@payment.TotalInterest</td>
+                                <td>@payment.Balance</td>
+                            </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    }
+</div>
